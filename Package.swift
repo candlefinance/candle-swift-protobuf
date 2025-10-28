@@ -20,7 +20,7 @@ let package = Package(
         ),
         .library(
             name: "SwiftProtobuf",
-            targets: ["SwiftProtobuf"]
+            targets: ["CandleSwiftProtobuf"]
         ),
         .library(
             name: "SwiftProtobufPluginLibrary",
@@ -33,32 +33,32 @@ let package = Package(
     ],
     targets: [
         .target(
-            name: "SwiftProtobuf",
+            name: "CandleSwiftProtobuf",
             exclude: ["CMakeLists.txt"],
             resources: [.copy("PrivacyInfo.xcprivacy")],
             swiftSettings: .packageSettings
         ),
         .target(
             name: "SwiftProtobufPluginLibrary",
-            dependencies: ["SwiftProtobuf"],
+            dependencies: ["CandleSwiftProtobuf"],
             exclude: ["CMakeLists.txt"],
             resources: [.copy("PrivacyInfo.xcprivacy")],
             swiftSettings: .packageSettings
         ),
         .target(
             name: "SwiftProtobufTestHelpers",
-            dependencies: ["SwiftProtobuf"],
+            dependencies: ["CandleSwiftProtobuf"],
             swiftSettings: .packageSettings
         ),
         .executableTarget(
             name: "protoc-gen-swift",
-            dependencies: ["SwiftProtobufPluginLibrary", "SwiftProtobuf"],
+            dependencies: ["SwiftProtobufPluginLibrary", "CandleSwiftProtobuf"],
             exclude: ["CMakeLists.txt"],
             swiftSettings: .packageSettings
         ),
         .executableTarget(
             name: "Conformance",
-            dependencies: ["SwiftProtobuf"],
+            dependencies: ["CandleSwiftProtobuf"],
             exclude: ["failure_list_swift.txt", "text_format_failure_list_swift.txt"],
             swiftSettings: .packageSettings
         ),
@@ -69,7 +69,7 @@ let package = Package(
         ),
         .testTarget(
             name: "SwiftProtobufTests",
-            dependencies: ["SwiftProtobuf"],
+            dependencies: ["CandleSwiftProtobuf"],
             swiftSettings: .packageSettings
         ),
         .testTarget(
