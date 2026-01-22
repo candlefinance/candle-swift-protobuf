@@ -14,21 +14,9 @@ import PackageDescription
 let package = Package(
     name: "candle-SwiftProtobuf",
     products: [
-        .executable(
-            name: "protoc-gen-swift",
-            targets: ["protoc-gen-swift"]
-        ),
         .library(
             name: "SwiftProtobuf",
             targets: ["CandleSwiftProtobuf"]
-        ),
-        .library(
-            name: "SwiftProtobufPluginLibrary",
-            targets: ["SwiftProtobufPluginLibrary"]
-        ),
-        .plugin(
-            name: "SwiftProtobufPlugin",
-            targets: ["SwiftProtobufPlugin"]
         ),
     ],
     targets: [
@@ -39,21 +27,8 @@ let package = Package(
             swiftSettings: .packageSettings
         ),
         .target(
-            name: "SwiftProtobufPluginLibrary",
-            dependencies: ["CandleSwiftProtobuf"],
-            exclude: ["CMakeLists.txt"],
-            resources: [.copy("PrivacyInfo.xcprivacy")],
-            swiftSettings: .packageSettings
-        ),
-        .target(
             name: "SwiftProtobufTestHelpers",
             dependencies: ["CandleSwiftProtobuf"],
-            swiftSettings: .packageSettings
-        ),
-        .executableTarget(
-            name: "protoc-gen-swift",
-            dependencies: ["SwiftProtobufPluginLibrary", "CandleSwiftProtobuf"],
-            exclude: ["CMakeLists.txt"],
             swiftSettings: .packageSettings
         ),
         .executableTarget(
@@ -62,24 +37,9 @@ let package = Package(
             exclude: ["failure_list_swift.txt", "text_format_failure_list_swift.txt"],
             swiftSettings: .packageSettings
         ),
-        .plugin(
-            name: "SwiftProtobufPlugin",
-            capability: .buildTool(),
-            dependencies: ["protoc-gen-swift"]
-        ),
         .testTarget(
             name: "SwiftProtobufTests",
             dependencies: ["CandleSwiftProtobuf"],
-            swiftSettings: .packageSettings
-        ),
-        .testTarget(
-            name: "SwiftProtobufPluginLibraryTests",
-            dependencies: ["SwiftProtobufPluginLibrary", "SwiftProtobufTestHelpers"],
-            swiftSettings: .packageSettings
-        ),
-        .testTarget(
-            name: "protoc-gen-swiftTests",
-            dependencies: ["protoc-gen-swift", "SwiftProtobufTestHelpers"],
             swiftSettings: .packageSettings
         ),
     ],
