@@ -12,7 +12,7 @@
 import PackageDescription
 
 let package = Package(
-    name: "candle-SwiftProtobuf",
+    name: "SwiftProtobuf",
     products: [
         .library(
             name: "SwiftProtobuf",
