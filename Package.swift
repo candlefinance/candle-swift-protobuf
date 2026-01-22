@@ -15,7 +15,7 @@ let package = Package(
     name: "SwiftProtobuf",
     products: [
         .library(
-            name: "SwiftProtobuf",
+            name: "CandleSwiftProtobuf",
             targets: ["CandleSwiftProtobuf"]
         ),
     ],
